@@ -15,6 +15,8 @@ var GameLayer = cc.LayerColor.extend({
         this.healthbar.startround();
         this.healthbar.scheduleUpdate();
 
+        this.press = GameLayer.PRESS.UP;
+
         // this.schedule(function() {
         //     this.scoreLabel.setString("----");
         // },1);
@@ -23,13 +25,19 @@ var GameLayer = cc.LayerColor.extend({
         return true;
     },
     onKeyDown: function( e ) {
-        if(this.healthbar.state!=Healthbar.STATE.START)
-        this.healthbar.startround();
-       if(e == 32){
-        this.score++;
-        this.updateScoreLabel(this.score);
-        this.healthbar.increase();
+        if(this.press == GameLayer.PRESS.UP){
+            if(this.healthbar.state!=Healthbar.STATE.START)
+            this.healthbar.startround();
+            if(e == 32){
+                this.score++;
+                this.updateScoreLabel(this.score);
+                this.healthbar.increase();
+                this.press = GameLayer.PRESS.DOWN;
+            }
         }
+    },
+        onKeyUp: function(e) {
+         this.press = GameLayer.PRESS.UP;
     },
     updateScoreLabel: function() {        
         this.scoreLabel.setString( this.score );
@@ -44,4 +52,9 @@ var StartScene = cc.Scene.extend({
         this.addChild( layer );
     }
 });
+GameLayer.PRESS ={
+    UP :0,
+    DOWN :1
+} ;
+
 

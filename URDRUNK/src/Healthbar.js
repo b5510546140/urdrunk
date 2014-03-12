@@ -20,13 +20,16 @@ var Healthbar = cc.Node.extend({
 	  },
 	  increase:function(){
 	  	if(this.healthper<=1){
-	  	this.healthper = this.healthper+0.005;
+	  	this.healthper = this.healthper+Healthbar.CONSTANT.INCREASE;
+	  	if(this.healthper>1){
+	  		this.healthper = 1;
+	  	}
 	  	this.health.setScaleX(this.healthper);
 	  	}
 	  },
 	  startdecrease:function(){
 	  	if(this.healthper>=0){
-	  	this.healthper = this.healthper-0.0003;
+	  	this.healthper = this.healthper-Healthbar.CONSTANT.DECREASE;
 	  	this.health.setScaleX(this.healthper);
 	  }
 	  },
@@ -43,3 +46,7 @@ Healthbar.STATE ={
 	START :0,
 	STOP :1
 } ;
+Healthbar.CONSTANT = {
+	DECREASE : 0.002,
+	INCREASE : 0.1
+};
