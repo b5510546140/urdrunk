@@ -8,6 +8,10 @@ var GameLayer = cc.LayerColor.extend({
         this.scoreLabel.setPosition( cc.p( 200, 560 ) );
         this.scoreLabel.setColor(new cc.Color3B(0,0,0)); 
         this.addChild( this.scoreLabel,0 );
+        this.background = cc.Sprite.create("res/images/bg.png");
+        this.background.setPosition( new cc.Point( 0, 0 ));
+        this.background.setAnchorPoint(new cc.Point(0,0));
+        this.addChild(this.background);
 
         this.healthbar = new Healthbar();
         this.healthbar.setPosition(cc.p(530,400));
@@ -17,11 +21,12 @@ var GameLayer = cc.LayerColor.extend({
 
         this.press = GameLayer.PRESS.UP;
 
-        // this.schedule(function() {
-        //     this.scoreLabel.setString("----");
-        // },1);
+        this.time = 20;
+        this.schedule(function() {
+            console.log(this.time--);
+        },1);
 
-
+        
         return true;
     },
     onKeyDown: function( e ) {

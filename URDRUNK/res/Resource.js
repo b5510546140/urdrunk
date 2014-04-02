@@ -1,6 +1,9 @@
 var Resources = [
     //image
-    // {src: 'images/wall.png' }
+     {src: 'images/bg.png' },
+     {src: 'images/boardhealth.png' },
+     {src: 'images/health.png' },
+     {src: 'images/healthbar.png' }
  
     //plist
  
