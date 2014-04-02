@@ -7,7 +7,7 @@ var GameLayer = cc.LayerColor.extend({
         this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 32 );
         this.scoreLabel.setPosition( cc.p( 200, 560 ) );
         this.scoreLabel.setColor(new cc.Color3B(0,0,0)); 
-        this.addChild( this.scoreLabel,0 );
+        this.addChild( this.scoreLabel,1 );
         this.background = cc.Sprite.create("res/images/bg.png");
         this.background.setPosition( new cc.Point( 0, 0 ));
         this.background.setAnchorPoint(new cc.Point(0,0));
