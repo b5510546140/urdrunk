@@ -12,7 +12,7 @@
         // engineDir: '../../cocos2d/',
         SingleEngineFile:'lib/Cocos2d-html5-v2.2.2.min.js',
         appFiles:[
-            'src/GameLayer.js','src/Healthbar.js'     //add your own files in order here
+            'src/GameLayer.js','src/Healthbar.js','src/Resource.js','src/Beer.js'     //add your own files in order here
         ]
     };
 

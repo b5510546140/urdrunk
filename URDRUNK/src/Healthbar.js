@@ -1,52 +1,59 @@
-var Healthbar = cc.Node.extend({
+var HealthBar = cc.Node.extend({
 	  ctor: function() {
 	  	this._super();
-        this.graphic = cc.Sprite.create( 'res/images/healthbar.png' );
+        this.graphic = cc.Sprite.create( 'res/images/healthBar2.png' );
         this.graphic.setAnchorPoint( new cc.Point( 0.5, 0 ));
-         this.graphic.setPosition( new cc.Point( 0, 0 ));
-         this.addChild(this.graphic);
+        this.graphic.setPosition( new cc.Point( 0, 0 ));
+        this.addChild(this.graphic);
         this.boarder = cc.Sprite.create('res/images/boardhealth.png');
         this.boarder.setAnchorPoint(new cc.Point(0,0));
-        this.boarder.setPosition(new cc.Point(-25,60));
+        this.boarder.setPosition(new cc.Point(-25,67));
         this.addChild(this.boarder);
         this.health = cc.Sprite.create('res/images/health.png');
         this.health.setAnchorPoint(new cc.Point(0,0));
-        this.health.setPosition(new cc.Point(-9,73));
+        this.health.setPosition(new cc.Point(-10,80));
         this.addChild(this.health);
-        this.state = Healthbar.STATE.STOP;
+        this.state = HealthBar.STATE.STOP;
 
-        this.healthper = 0;
-        this.health.setScaleX(this.healthper);
+        this.healthpercent = 1;
+        this.health.setScaleX(this.healthpercent);
 	  },
+
 	  increase:function(){
-	  	if(this.healthper<=1){
-	  	this.healthper = this.healthper+Healthbar.CONSTANT.INCREASE;
-	  	if(this.healthper>1){
-	  		this.healthper = 1;
-	  	}
-	  	this.health.setScaleX(this.healthper);
+	  	if(this.healthpercent <= 1){
+	  		this.healthpercent = this.healthpercent + HealthBar.CONSTANT.INCREASE;
+	  		if(this.healthpercent > 1){
+	  			this.healthpercent = 1;
+	  		}
+	  		this.health.setScaleX(this.healthpercent);
 	  	}
 	  },
+
 	  startdecrease:function(){
-	  	if(this.healthper>=0){
-	  	this.healthper = this.healthper-Healthbar.CONSTANT.DECREASE;
-	  	this.health.setScaleX(this.healthper);
-	  }
+	  	if(this.healthpercent >= 0){
+	  		this.healthpercent = this.healthpercent - HealthBar.CONSTANT.DECREASE;
+	  		if(this.healthpercent < 0){
+	  			this.healthpercent = 0;
+	  		}
+	  		this.health.setScaleX(this.healthpercent);
+	   }
 	  },
+
 	  update:function(){
-	  	if(this.state == Healthbar.STATE.START){
-	  	this.startdecrease();
+	  	if(this.state == HealthBar.STATE.START){
+	  		this.startdecrease();
 	  	}
 	  },
+
 	  startround:function(){
-	  	this.state = Healthbar.STATE.START;
+	  	this.state = HealthBar.STATE.START;
 	  }
 });
-Healthbar.STATE ={
+HealthBar.STATE ={
 	START :0,
 	STOP :1
 } ;
-Healthbar.CONSTANT = {
-	DECREASE : 0.002,
+HealthBar.CONSTANT = {
+	DECREASE : 0.001, //0.06 per sec
 	INCREASE : 0.1
 };
