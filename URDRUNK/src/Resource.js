@@ -1,6 +1,6 @@
 var Resources = [
     //image
-     {src: 'images/bg.png' },
+     {src: 'images/bg2.png' },
      {src: 'images/healthbar.png' },
      {src: 'images/health.png' },
      {src: 'images/boardhealth.png' },
