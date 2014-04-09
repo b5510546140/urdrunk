@@ -3,6 +3,7 @@ var Beer = cc.Sprite.extend({
     	this._super();
         this.x = x;
         this.y = y;
+        this.left = true;//some beer left on glass
         //to do change the picture to the glass of beer
         this.beer = cc.Sprite.create( 'res/images/beer.png' );//glass of beer
         this.addChild(this.beer);
@@ -22,6 +23,11 @@ var Beer = cc.Sprite.extend({
             this.x += 5;
     		this.setPositionX( this.x );
     	}
+
+        if(!this.left){
+            this.x += 5;
+            this.setPositionX( this.x );
+        }
     },
 
     setScaleYBeer: function(percentBeerLeft){
@@ -30,6 +36,15 @@ var Beer = cc.Sprite.extend({
     },
 
     isInScreen: function(){
-        return this.x>=0 && this.x<=800 && this.y>=0 && y<=600;
+        if(this.x>620){
+            return false;
+        }
+        return true;
+        // return this.x>=0 && this.x<=800 && this.y>=0 && this.y<=620;
+    },
+
+    setLeftFalse: function(){
+        this.left = false;
     }
+
 });

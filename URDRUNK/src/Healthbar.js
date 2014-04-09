@@ -1,7 +1,7 @@
 var HealthBar = cc.Node.extend({
 	  ctor: function() {
 	  	this._super();
-        this.graphic = cc.Sprite.create( 'res/images/healthBar2.png' );
+        this.graphic = cc.Sprite.create( 'res/images/healthBar.png' );
         this.graphic.setAnchorPoint( new cc.Point( 0.5, 0 ));
         this.graphic.setPosition( new cc.Point( 0, 0 ));
         this.addChild(this.graphic);

@@ -4,6 +4,7 @@ var GameLayer = cc.LayerColor.extend({
         this.setPosition( new cc.Point( 0, 0 ) );
         this.setKeyboardEnabled( true );
         this.score = 0;
+        this.count = 0;
 
         this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 32 );
         this.scoreLabel.setPosition( cc.p( 240, 560 ) );
@@ -15,7 +16,7 @@ var GameLayer = cc.LayerColor.extend({
         this.timeLabel.setColor(new cc.Color3B(255,255,255)); 
         this.addChild( this.timeLabel,1 );
 
-        this.background = cc.Sprite.create("res/images/bg2.png");
+        this.background = cc.Sprite.create("res/images/bg.png");
         this.background.setPosition( new cc.Point( 0, 0 ));
         this.background.setAnchorPoint(new cc.Point(0,0));
         this.addChild(this.background);
@@ -49,13 +50,35 @@ var GameLayer = cc.LayerColor.extend({
         // this.checkClickKeyboard = new CheckClickKeyboard();
 
         this.press = GameLayer.PRESS.UP;
+        this.checkDrinksInScreen = false;
+
+        this.scheduleUpdate();
 
         this.time = 0;
         this.schedule(function() {
-            // this.timeLabel.setString( ++this.time );
+            this.timeLabel.setString( ++this.time );
         },1);
 
         return true;
+    },
+
+    update: function(){
+        if(this.nowDrink == 'b'){
+            this.checkDrinksInScreen = !this.beer.isInScreen();
+        }
+        else if(this.nowDrink == 'c'){
+            
+        }
+        else if(this.nowDrink == 'v'){
+            
+        }
+        if(this.checkDrinksInScreen){
+            console.log('getin if');
+            this.nowDrink = this.getDrink();
+            this.setScheduleUpdate();
+            this.checkDrinksInScreen = false;
+        }
+
     },
 
     getDrink: function(){
@@ -66,6 +89,7 @@ var GameLayer = cc.LayerColor.extend({
             //to do random new group of drinks
 
         }
+        ++this.runnerDrinks;
         console.log(temp+' in the get drink');
         return temp;
 
@@ -84,11 +108,53 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     onKeyDown: function( e ) {
+        console.log(e);
         if(this.press == GameLayer.PRESS.UP){
             // if(this.healthbar.state != HealthBar.STATE.START)
             //     this.healthbar.startround();
+            if(this.nowDrink == 'b'){
+                if(e == 32){
+                    this.count++;
+                    this.updateScoreLabel(this.score);
+                    this.healthbar.increase();
+                    this.press = GameLayer.PRESS.DOWN;
+                    if(this.count >= 10){ //after click ten times
+                        this.beer.setLeftFalse();
+                        console.log('set it to left');
+                    }
+                }
+            }
+            else if(this.nowDrink == 'c'){
+                /**
+                q = 81
+                w = 87
+                e = 69
+                r = 82
+                */
+                if(e == 81){
+                    this.healthbar.increase();
+
+                }
+                else if(e == 87){
+                    this.healthbar.increase();
+
+                }
+                else if(e == 69){
+                    this.healthbar.increase();
+
+                }
+                else if(e == 82){
+                    this.healthbar.increase(); 
+
+                }
+            }
+            else if(this.nowDrink == 'v'){
+            //for vodga
+            }
+
+            /**
             if(e == 32){
-                this.score;
+                // this.score;
                 this.updateScoreLabel(this.score);
                 this.healthbar.increase();
                 this.press = GameLayer.PRESS.DOWN;
@@ -96,7 +162,7 @@ var GameLayer = cc.LayerColor.extend({
                 this.cocktail.unscheduleUpdate();
                 this.cocktail.setPosition(cc.p(200,600));
 
-            }
+            }*/
         }
     },
 

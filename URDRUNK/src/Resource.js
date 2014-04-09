@@ -1,11 +1,11 @@
 var Resources = [
     //image
-     {src: 'images/bg2.png' },
-     {src: 'images/healthbar.png' },
-     {src: 'images/health.png' },
-     {src: 'images/boardhealth.png' },
-     {src: 'images/beer.png' },
-     {src: 'images/cocktail1.png'}
+     {src: 'res/images/bg.png' },
+     {src: 'res/images/healthbar.png' },
+     {src: 'res/images/health.png' },
+     {src: 'res/images/boardhealth.png' },
+     {src: 'res/images/beer.png' },
+     {src: 'res/images/cocktail1.png'}
  
     //plist
  
