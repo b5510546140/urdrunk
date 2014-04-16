@@ -7,28 +7,46 @@ var Beer = cc.Sprite.extend({
         //to do change the picture to the glass of beer
         this.beer = cc.Sprite.create( 'res/images/beer.png' );//glass of beer
         this.addChild(this.beer);
-
         //to do add the beer just only beer not glass
     },
 
+    //seperate to function
     update: function(dt){
-    	if(this.y>360){
-            this.y -= 5;
-    		this.setPositionY( this.y);
+    	if(this.y > 360){
+           this.fallDown();
     	}
         else{
-            this.setPositionY( 360 );
+            this.setPositionOnTable();
         }
-        if(this.x<600&&this.y<=360){
-            this.x += 5;
-    		this.setPositionX( this.x );
+        if(this.x < 600 && this.y <= 360){
+            this.goRight();
     	}
 
         if(!this.left){
-            this.x += 5;
-            this.setPositionX( this.x );
+            this.notHaveDrinkLeft();  
         }
     },
+
+    notHaveDrinkLeft: function(){
+        this.x += 9;
+        this.setPositionX( this.x );
+    },
+
+    fallDown: function(){
+        this.y -= 5;
+        this.setPositionY( this.y); 
+    },
+
+    goRight: function(){
+        this.x += 5;
+        this.setPositionX( this.x );
+    },
+
+    setPositionOnTable: function(){
+        this.setPositionY( Beer.POSITION.TABLE );
+        this.y = Beer.POSITION.TABLE;
+    },
+
 
     setScaleYBeer: function(percentBeerLeft){
         // this.health.setScaleX(this.healthpercent);
@@ -36,11 +54,17 @@ var Beer = cc.Sprite.extend({
     },
 
     isInScreen: function(){
-        if(this.x>620){
-            return false;
+        if(!this.left){
+            if(this.x > 800){
+                this.x = 300;
+                this.y = 700;
+                this.setPosition(cc.p(300,700));
+                this.unscheduleUpdate();
+                this.left = true;
+                return false;
+            }
         }
         return true;
-        // return this.x>=0 && this.x<=800 && this.y>=0 && this.y<=620;
     },
 
     setLeftFalse: function(){
@@ -48,3 +72,6 @@ var Beer = cc.Sprite.extend({
     }
 
 });
+Beer.POSITION ={
+    TABLE :360,
+} ;

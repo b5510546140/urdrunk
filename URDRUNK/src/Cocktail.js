@@ -3,34 +3,89 @@ var Cocktail = cc.Sprite.extend({
 		this._super();
 		this.x = x;
 		this.y = y;
+        this.numberOfCharacter = this.randomPicture();
 		// var name = 'res/images/cocktail'+this.randomPicture()+'.png';
 		var name = 'res/images/cocktail'+1+'.png';
+        this.character = 'res/images/char'+this.numberOfCharacter+'.png';
+        this.charPic = cc.Sprite.create(this.character);
+        this.charPic.setAnchorPoint( new cc.Point( 0.5, 0 ) );
+        this.charPic.setPosition( new cc.Point( 0, 0 ) );
+        this.addChild( this.charPic , 1 );
 		console.log(name);
 		this.cocktail = cc.Sprite.create( name );//just try to see the picture
         this.addChild(this.cocktail);
+
+        this.left = true;
         // to do add the letter on the top of the cocktail glass
 	},
 
 	update: function(dt){
-		this.x=this.getPositionX();
-    	this.y=this.getPositionY();
-    	if(this.y>370){
-            this.y -= 5;
-    		this.setPositionY( this.y);
+		// this.x = this.getPositionX();
+  //   	this.y = this.getPositionY();
+    	if(this.y > Cocktail.POSITION.TABLE){
+            this.fallDown();
     	}
         else{
-            this.setPositionY( 370 );
-            this.y = 370;
+           this.setPositionOnTable();
         }
-        if(this.x<600&&this.y<=370){
-            this.x += 5;
-    		this.setPositionX( this.x );
+
+        if(this.x < 600 && this.y == 370){
+            this.goRight();
     	}
+        
+        if(!this.left){
+            this.notHaveDrinkLeft();  
+        }
+    },
+
+    notHaveDrinkLeft: function(){
+        this.x += 9;
+        this.setPositionX( this.x );
+    },
+
+    fallDown: function(){
+        this.y -= 5;
+        this.setPositionY( this.y); 
+    },
+
+    goRight: function(){
+        this.x += 5;
+        this.setPositionX( this.x );
+    },
+
+    setPositionOnTable: function(){
+        this.setPositionY( Cocktail.POSITION.TABLE );
+        this.y = Cocktail.POSITION.TABLE;
     },
 
     randomPicture: function(){
     	return Math.floor(Math.random()*4+1);
-    }
+    },
+
+    randomCharacter: function(){
+        this.character = 'res/images/char'+this.randomPicture()+'.png';
+    },
+
+    setLeftFalse: function(){
+        this.left = false;
+    },
+
+   isInScreen: function(){
+        if(!this.left){
+            if(this.x > 800){
+                this.x = 300;
+                this.y = 700;
+                this.setPosition(cc.p(300,700));
+                this.unscheduleUpdate();
+                this.left = true;
+                return false;
+            }
+        }
+        return true;
+    },
 
 
 });
+Cocktail.POSITION ={
+    TABLE :370,
+} ;

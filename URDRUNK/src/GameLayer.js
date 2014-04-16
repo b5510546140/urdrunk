@@ -67,16 +67,18 @@ var GameLayer = cc.LayerColor.extend({
             this.checkDrinksInScreen = !this.beer.isInScreen();
         }
         else if(this.nowDrink == 'c'){
-            
+            this.checkDrinksInScreen = !this.cocktail.isInScreen();
         }
         else if(this.nowDrink == 'v'){
             
         }
+        // console.log(this.checkDrinksInScreen);
         if(this.checkDrinksInScreen){
-            console.log('getin if');
+            console.log('getin if update');
             this.nowDrink = this.getDrink();
             this.setScheduleUpdate();
             this.checkDrinksInScreen = false;
+            this.count = 0;
         }
 
     },
@@ -107,22 +109,25 @@ var GameLayer = cc.LayerColor.extend({
         }
     },
 
+    unScheduleUpdate: function(){
+        if(this.nowDrink == 'b'){
+            this.beer.unscheduleUpdate();
+        }
+        else if(this.nowDrink == 'c'){
+            this.cocktail.unscheduleUpdate();
+        }
+        else if(this.nowDrink == 'v'){
+            //for vodga
+        }
+    },
+
     onKeyDown: function( e ) {
         console.log(e);
         if(this.press == GameLayer.PRESS.UP){
             // if(this.healthbar.state != HealthBar.STATE.START)
             //     this.healthbar.startround();
-            if(this.nowDrink == 'b'){
-                if(e == 32){
-                    this.count++;
-                    this.updateScoreLabel(this.score);
-                    this.healthbar.increase();
-                    this.press = GameLayer.PRESS.DOWN;
-                    if(this.count >= 10){ //after click ten times
-                        this.beer.setLeftFalse();
-                        console.log('set it to left');
-                    }
-                }
+            if(this.nowDrink == 'b' && e == 32){
+                this.pressSpacebar();
             }
             else if(this.nowDrink == 'c'){
                 /**
@@ -131,38 +136,48 @@ var GameLayer = cc.LayerColor.extend({
                 e = 69
                 r = 82
                 */
-                if(e == 81){
-                    this.healthbar.increase();
+                if(e == 81 && this.cocktail.numberOfCharacter == 1){
+                    this.pressForCocktail();
 
                 }
-                else if(e == 87){
-                    this.healthbar.increase();
+                else if(e == 87 && this.cocktail.numberOfCharacter == 2){
+                    this.pressForCocktail();
 
                 }
-                else if(e == 69){
-                    this.healthbar.increase();
+                else if(e == 69 && this.cocktail.numberOfCharacter == 3){
+                    this.pressForCocktail();
 
                 }
-                else if(e == 82){
-                    this.healthbar.increase(); 
+                else if(e == 82 && this.cocktail.numberOfCharacter == 4){
+                    this.pressForCocktail(); 
 
                 }
             }
             else if(this.nowDrink == 'v'){
             //for vodga
             }
+        }
+    },
 
-            /**
-            if(e == 32){
-                // this.score;
-                this.updateScoreLabel(this.score);
-                this.healthbar.increase();
-                this.press = GameLayer.PRESS.DOWN;
+    pressForCocktail: function(){
+        this.count++;
+        this.updateScoreLabel(this.score);
+        this.healthbar.increase();
+        this.press = GameLayer.PRESS.DOWN;
+        if(this.count >= 10){ //after click ten times
+            this.cocktail.setLeftFalse();
+            console.log('set it to left cocktail 10 times');
+        }
+    },
 
-                this.cocktail.unscheduleUpdate();
-                this.cocktail.setPosition(cc.p(200,600));
-
-            }*/
+    pressSpacebar: function(){
+        this.count++;
+        this.updateScoreLabel(this.score);
+        this.healthbar.increase();
+        this.press = GameLayer.PRESS.DOWN;
+        if(this.count >= 10){ //after click ten times
+            this.beer.setLeftFalse();
+            console.log('set it to left');
         }
     },
 

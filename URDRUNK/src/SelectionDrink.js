@@ -1,6 +1,6 @@
 var SelectionDrink = cc.Node.extend({
 	 ctor: function() {
-	 	this.array = ['b','c','b,','b','c'];
+	 	this.array = ['c','c','c','c','b','c'];
 	 },
 
 	 getDrinkFromArray: function(i){
@@ -11,6 +11,5 @@ var SelectionDrink = cc.Node.extend({
 	 },
 
 	 random :function(){
-
 	 }
 });
