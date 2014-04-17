@@ -51,6 +51,7 @@ var GameLayer = cc.LayerColor.extend({
 
         this.press = GameLayer.PRESS.UP;
         this.checkDrinksInScreen = false;
+        this.maxPressTime = this.randomPress();
 
         this.scheduleUpdate();
 
@@ -79,15 +80,22 @@ var GameLayer = cc.LayerColor.extend({
             this.setScheduleUpdate();
             this.checkDrinksInScreen = false;
             this.count = 0;
+            this.maxPressTime = this.randomPress();
         }
 
+    },
+
+    randomPress: function(){
+        return Math.floor(Math.random() * 10 + 10);
     },
 
     getDrink: function(){
         var temp = this.selectionDrink.getDrinkFromArray(this.runnerDrinks);
         if(temp == null){//end of the set
             this.runnerDrinks = 0; //set for new set
-
+            this.selectionDrink.random();
+            temp = this.selectionDrink.getDrinkFromArray(this.runnerDrinks);
+            console.log('eiei')
             //to do random new group of drinks
 
         }
@@ -160,22 +168,28 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     pressForCocktail: function(){
-        this.count++;
-        this.updateScoreLabel(this.score);
-        this.healthbar.increase();
-        this.press = GameLayer.PRESS.DOWN;
-        if(this.count >= 10){ //after click ten times
+        if(this.count < this.maxPressTime){
+            ++this.count;
+            ++this.score;
+            this.updateScoreLabel(this.score);
+            this.healthbar.increase();
+            this.press = GameLayer.PRESS.DOWN;
+        }  
+        if(this.count >= this.maxPressTime){ //after click ten times
             this.cocktail.setLeftFalse();
-            console.log('set it to left cocktail 10 times');
+            console.log('set it to left cocktail this.maxPressTime times');
         }
     },
 
-    pressSpacebar: function(){
-        this.count++;
-        this.updateScoreLabel(this.score);
-        this.healthbar.increase();
-        this.press = GameLayer.PRESS.DOWN;
-        if(this.count >= 10){ //after click ten times
+    pressSpacebar: function(){ 
+        if(this.count < this.maxPressTime){
+            ++this.score;
+            ++this.count;
+            this.updateScoreLabel(this.score);
+            this.healthbar.increase();
+            this.press = GameLayer.PRESS.DOWN;
+        }
+        if(this.count >= this.maxPressTime){ //after click ten times
             this.beer.setLeftFalse();
             console.log('set it to left');
         }

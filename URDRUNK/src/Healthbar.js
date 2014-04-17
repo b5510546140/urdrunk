@@ -14,6 +14,7 @@ var HealthBar = cc.Node.extend({
         this.health.setPosition(new cc.Point(-10,80));
         this.addChild(this.health);
         this.state = HealthBar.STATE.STOP;
+        this.accDecrease = 1.001;
 
         this.healthpercent = 1;
         this.health.setScaleX(this.healthpercent);
@@ -31,7 +32,8 @@ var HealthBar = cc.Node.extend({
 
 	  startdecrease:function(){
 	  	if(this.healthpercent >= 0){
-	  		this.healthpercent = this.healthpercent - HealthBar.CONSTANT.DECREASE;
+	  		this.healthpercent = this.healthpercent - (HealthBar.CONSTANT.DECREASE * this.accDecrease );
+	  		this.accDecrease += 0.0002;
 	  		if(this.healthpercent < 0){
 	  			this.healthpercent = 0;
 	  		}
@@ -55,5 +57,5 @@ HealthBar.STATE ={
 } ;
 HealthBar.CONSTANT = {
 	DECREASE : 0.001, //0.06 per sec
-	INCREASE : 0.1
+	INCREASE : 0.04
 };

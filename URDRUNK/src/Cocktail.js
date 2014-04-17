@@ -14,7 +14,6 @@ var Cocktail = cc.Sprite.extend({
 		console.log(name);
 		this.cocktail = cc.Sprite.create( name );//just try to see the picture
         this.addChild(this.cocktail);
-
         this.left = true;
         // to do add the letter on the top of the cocktail glass
 	},
@@ -62,10 +61,6 @@ var Cocktail = cc.Sprite.extend({
     	return Math.floor(Math.random()*4+1);
     },
 
-    randomCharacter: function(){
-        this.character = 'res/images/char'+this.randomPicture()+'.png';
-    },
-
     setLeftFalse: function(){
         this.left = false;
     },
@@ -78,11 +73,26 @@ var Cocktail = cc.Sprite.extend({
                 this.setPosition(cc.p(300,700));
                 this.unscheduleUpdate();
                 this.left = true;
+                this.getNewPictureAndCharacter();
                 return false;
             }
         }
         return true;
     },
+
+    getNewPictureAndCharacter: function(){
+        this.removeAllChildren();
+        this.numberOfCharacter = this.randomPicture();
+        this.character = 'res/images/char'+this.numberOfCharacter+'.png';
+        this.charPic = cc.Sprite.create(this.character);
+        this.charPic.setAnchorPoint( new cc.Point( 0.5, 0 ) );
+        this.charPic.setPosition( new cc.Point( 0, 0 ) );
+        this.addChild( this.charPic , 1 );
+        // var name = 'res/images/cocktail'+this.randomPicture()+'.png';
+        var name = 'res/images/cocktail'+1+'.png';
+        this.cocktail = cc.Sprite.create( name );
+        this.addChild(this.cocktail);
+    }
 
 
 });
