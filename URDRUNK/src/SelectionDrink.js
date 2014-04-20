@@ -1,7 +1,8 @@
 var SelectionDrink = cc.Node.extend({
 	 ctor: function() {
-	 	this.array = [['b','b','b','c','b','b','b','b','c','c','b','c'],
-	 	['c','b','c','c','c','c','b','c','b','c','b','c']];
+	 	// this.array = [['b','b','c','c','b','c','b','c','b','c','b','c'],
+	 	// ['c','b','c','c','c','c','b','c','b','c','b','c']];
+	 	this.array = [['c','b'],['c','c']]
 	 	this.randomSet = null;
 	 	this.random();
 	 },

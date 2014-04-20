@@ -16,28 +16,28 @@ var HealthBar = cc.Node.extend({
         this.state = HealthBar.STATE.STOP;
         this.accDecrease = 1.001;
 
-        this.healthpercent = 1;
-        this.health.setScaleX(this.healthpercent);
+        this.healthPercent = 1;
+        this.health.setScaleX(this.healthPercent);
 	  },
 
 	  increase:function(){
-	  	if(this.healthpercent <= 1){
-	  		this.healthpercent = this.healthpercent + HealthBar.CONSTANT.INCREASE;
-	  		if(this.healthpercent > 1){
-	  			this.healthpercent = 1;
+	  	if(this.healthPercent <= 1){
+	  		this.healthPercent = this.healthPercent + HealthBar.CONSTANT.INCREASE;
+	  		if(this.healthPercent > 1){
+	  			this.healthPercent = 1;
 	  		}
-	  		this.health.setScaleX(this.healthpercent);
+	  		this.health.setScaleX(this.healthPercent);
 	  	}
 	  },
 
 	  startdecrease:function(){
-	  	if(this.healthpercent >= 0){
-	  		this.healthpercent = this.healthpercent - (HealthBar.CONSTANT.DECREASE * this.accDecrease );
+	  	if(this.healthPercent >= 0){
+	  		this.healthPercent = this.healthPercent - (HealthBar.CONSTANT.DECREASE * this.accDecrease );
 	  		this.accDecrease += 0.0002;
-	  		if(this.healthpercent < 0){
-	  			this.healthpercent = 0;
+	  		if(this.healthPercent < 0){
+	  			this.healthPercent = 0;
 	  		}
-	  		this.health.setScaleX(this.healthpercent);
+	  		this.health.setScaleX(this.healthPercent);
 	   }
 	  },
 
@@ -56,6 +56,6 @@ HealthBar.STATE ={
 	STOP :1
 } ;
 HealthBar.CONSTANT = {
-	DECREASE : 0.001, //0.06 per sec
+	DECREASE : 0.0015, //0.06 per sec
 	INCREASE : 0.04
 };

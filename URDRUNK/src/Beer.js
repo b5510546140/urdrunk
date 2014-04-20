@@ -4,25 +4,35 @@ var Beer = cc.Sprite.extend({
         this.x = x;
         this.y = y;
         this.left = true;//some beer left on glass
+        this.half = false;
+        this.accFallDown = 0;
         //to do change the picture to the glass of beer
-        this.beer = cc.Sprite.create( 'res/images/beer.png' );//glass of beer
+        this.beer = cc.Sprite.create( 'res/images/beerfull.png' );//glass of beer
         this.addChild(this.beer);
         //to do add the beer just only beer not glass
     },
 
     //seperate to function
     update: function(dt){
-    	if(this.y > 360){
+    	if(this.y > 380){
            this.fallDown();
     	}
         else{
             this.setPositionOnTable();
         }
-        if(this.x < 600 && this.y <= 360){
+        if(this.x < 550 && this.y <= 380){
             this.goRight();
     	}
-
+        if(this.half){
+            this.removeChild(this.beer);
+            this.beer = this.beer = cc.Sprite.create( 'res/images/beerhalf.png' );
+            this.addChild(this.beer);
+            this.half = false;
+        }
         if(!this.left){
+            this.removeChild(this.beer);
+            this.beer = this.beer = cc.Sprite.create( 'res/images/beer0.png' );
+            this.addChild(this.beer);
             this.notHaveDrinkLeft();  
         }
     },
@@ -33,8 +43,9 @@ var Beer = cc.Sprite.extend({
     },
 
     fallDown: function(){
-        this.y -= 5;
-        this.setPositionY( this.y); 
+       this.y -= (5 + this.accFallDown);
+        this.setPositionY( this.y);
+        this.accFallDown += 0.3;
     },
 
     goRight: function(){
@@ -61,10 +72,19 @@ var Beer = cc.Sprite.extend({
                 this.setPosition(cc.p(300,700));
                 this.unscheduleUpdate();
                 this.left = true;
+                this.half = false;
+                this.accFallDown = 0;
+                this.removeChild(this.beer);
+                this.beer = this.beer = cc.Sprite.create( 'res/images/beerfull.png' );
+                this.addChild(this.beer);
                 return false;
             }
         }
         return true;
+    },
+
+    setHalfTrue: function(){
+        this.half = true;
     },
 
     setLeftFalse: function(){
@@ -73,5 +93,5 @@ var Beer = cc.Sprite.extend({
 
 });
 Beer.POSITION ={
-    TABLE :360,
+    TABLE :380,
 } ;

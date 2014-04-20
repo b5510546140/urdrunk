@@ -4,17 +4,18 @@ var Cocktail = cc.Sprite.extend({
 		this.x = x;
 		this.y = y;
         this.numberOfCharacter = this.randomPicture();
-		// var name = 'res/images/cocktail'+this.randomPicture()+'.png';
-		var name = 'res/images/cocktail'+1+'.png';
+		var name = 'res/images/cocktail'+this.randomPicture()+'.png';
+		// var name = 'res/images/cocktail'+3+'.png';
         this.character = 'res/images/char'+this.numberOfCharacter+'.png';
         this.charPic = cc.Sprite.create(this.character);
         this.charPic.setAnchorPoint( new cc.Point( 0.5, 0 ) );
-        this.charPic.setPosition( new cc.Point( 0, 0 ) );
+        this.charPic.setPosition( new cc.Point( 0, 20 ) );
         this.addChild( this.charPic , 1 );
 		console.log(name);
 		this.cocktail = cc.Sprite.create( name );//just try to see the picture
         this.addChild(this.cocktail);
         this.left = true;
+        this.accFallDown = 0;
         // to do add the letter on the top of the cocktail glass
 	},
 
@@ -28,7 +29,7 @@ var Cocktail = cc.Sprite.extend({
            this.setPositionOnTable();
         }
 
-        if(this.x < 600 && this.y == 370){
+        if(this.x < 550 && this.y == 370){
             this.goRight();
     	}
         
@@ -43,8 +44,9 @@ var Cocktail = cc.Sprite.extend({
     },
 
     fallDown: function(){
-        this.y -= 5;
-        this.setPositionY( this.y); 
+        this.y -= (5 + this.accFallDown);
+        this.setPositionY( this.y);
+        this.accFallDown += 0.3;
     },
 
     goRight: function(){
@@ -73,6 +75,7 @@ var Cocktail = cc.Sprite.extend({
                 this.setPosition(cc.p(300,700));
                 this.unscheduleUpdate();
                 this.left = true;
+                this.accFallDown = 0;
                 this.getNewPictureAndCharacter();
                 return false;
             }
@@ -86,10 +89,10 @@ var Cocktail = cc.Sprite.extend({
         this.character = 'res/images/char'+this.numberOfCharacter+'.png';
         this.charPic = cc.Sprite.create(this.character);
         this.charPic.setAnchorPoint( new cc.Point( 0.5, 0 ) );
-        this.charPic.setPosition( new cc.Point( 0, 0 ) );
+        this.charPic.setPosition( new cc.Point( 0, 20 ) );
         this.addChild( this.charPic , 1 );
-        // var name = 'res/images/cocktail'+this.randomPicture()+'.png';
-        var name = 'res/images/cocktail'+1+'.png';
+        var name = 'res/images/cocktail'+this.randomPicture()+'.png';
+        // var name = 'res/images/cocktail'+1+'.png';
         this.cocktail = cc.Sprite.create( name );
         this.addChild(this.cocktail);
     }
