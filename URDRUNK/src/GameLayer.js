@@ -160,7 +160,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     onKeyDown: function( e ) {
-        console.log(e);
+        // console.log(e);
         if(this.press == GameLayer.PRESS.UP){
 
             if(this.nowDrink == 'b' && e == 32){
@@ -188,8 +188,9 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     pressVodga: function(){
-        if(this.count < this.maxPressTime){
+        if(this.count < 25){
             ++this.count;
+            console.log('+')
             this.score += this.scoreLv*2;
             this.updateScoreLabel(this.score);
             this.press = GameLayer.PRESS.DOWN;
