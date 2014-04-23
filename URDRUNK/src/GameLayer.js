@@ -43,7 +43,9 @@ var GameLayer = cc.LayerColor.extend({
         this.cocktail.setPosition(cc.p(300,700));
         this.addChild(this.cocktail);
 
-        //Code only no picture
+        this.vodga = new Vodga(300,700);
+        this.vodga.setPosition(cc.p(300,700));
+        this.addChild(this.vodga);
         /**
         this object use for choose the drinks which one gonna coming
         */
@@ -85,7 +87,7 @@ var GameLayer = cc.LayerColor.extend({
             this.checkDrinksInScreen = !this.cocktail.isInScreen();
         }
         else if(this.nowDrink == 'v'){
-            
+            this.checkDrinksInScreen = !this.vodga.isInScreen();   
         }
 
         if(this.checkDrinksInScreen){
@@ -115,7 +117,7 @@ var GameLayer = cc.LayerColor.extend({
             this.runnerDrinks = 0; //set for new set
             this.selectionDrink.random();
             this.scoreLv++;
-            // plus more time
+
             this.addTime();
 
             temp = this.selectionDrink.getDrinkFromArray(this.runnerDrinks);
@@ -141,7 +143,7 @@ var GameLayer = cc.LayerColor.extend({
             this.cocktail.scheduleUpdate();
         }
         else if(this.nowDrink == 'v'){
-            //for vodga
+            this.vodga.scheduleUpdate();
         }
     },
 
@@ -153,7 +155,7 @@ var GameLayer = cc.LayerColor.extend({
             this.cocktail.unscheduleUpdate();
         }
         else if(this.nowDrink == 'v'){
-            //for vodga
+            this.vodga.unscheduleUpdate();
         }
     },
 
@@ -179,9 +181,24 @@ var GameLayer = cc.LayerColor.extend({
                     this.pressForCocktail(); 
                 }
             }
-            else if(this.nowDrink == 'v'){
-            //for vodga
+            else if(this.nowDrink == 'v' && ( e == 37 || e == 38 || e == 39 || e == 40 ) ){
+                    this.pressVodga();
             }
+        }
+    },
+
+    pressVodga: function(){
+        if(this.count < this.maxPressTime){
+            ++this.count;
+            this.score += this.scoreLv*2;
+            this.updateScoreLabel(this.score);
+            this.press = GameLayer.PRESS.DOWN;
+        }  
+        if(this.count >= 25){ //after click ten times
+            this.vodga.setLeftFalse();
+            this.healthbar.increase();
+            this.healthbar.increase();
+            this.healthbar.increase();
         }
     },
 
@@ -195,7 +212,6 @@ var GameLayer = cc.LayerColor.extend({
         }  
         if(this.count >= this.maxPressTime){ //after click ten times
             this.cocktail.setLeftFalse();
-            console.log('set it to left cocktail this.maxPressTime times');
         }
     },
 
@@ -210,7 +226,7 @@ var GameLayer = cc.LayerColor.extend({
         console.log('count = '+this.count+' halftime = '+ this.halfPressTime)
         if(this.count == this.halfPressTime){
             this.beer.setHalfTrue();
-        }else if(this.count >= this.maxPressTime){ //after click ten times
+        }else if(this.count >= this.maxPressTime){ 
             this.beer.setLeftFalse();
             console.log('set it to left');
         }

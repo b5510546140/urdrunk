@@ -6,13 +6,12 @@ var Beer = cc.Sprite.extend({
         this.left = true;//some beer left on glass
         this.half = false;
         this.accFallDown = 0;
-        //to do change the picture to the glass of beer
+
         this.beer = cc.Sprite.create( 'res/images/beerfull.png' );//glass of beer
         this.addChild(this.beer);
-        //to do add the beer just only beer not glass
+
     },
 
-    //seperate to function
     update: function(dt){
     	if(this.y > 380){
            this.fallDown();
@@ -56,12 +55,6 @@ var Beer = cc.Sprite.extend({
     setPositionOnTable: function(){
         this.setPositionY( Beer.POSITION.TABLE );
         this.y = Beer.POSITION.TABLE;
-    },
-
-
-    setScaleYBeer: function(percentBeerLeft){
-        // this.health.setScaleX(this.healthpercent);
-        this.beer.setScaleY(percentBeerLeft);
     },
 
     isInScreen: function(){

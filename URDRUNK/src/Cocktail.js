@@ -92,7 +92,6 @@ var Cocktail = cc.Sprite.extend({
         this.charPic.setPosition( new cc.Point( 0, 20 ) );
         this.addChild( this.charPic , 1 );
         var name = 'res/images/cocktail'+this.randomPicture()+'.png';
-        // var name = 'res/images/cocktail'+1+'.png';
         this.cocktail = cc.Sprite.create( name );
         this.addChild(this.cocktail);
     }

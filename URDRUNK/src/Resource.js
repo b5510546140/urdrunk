@@ -14,7 +14,8 @@ var Resources = [
     {src: 'res/images/cocktail1.png'},
     {src: 'res/images/cocktail2.png'},
     {src: 'res/images/cocktail3.png'},
-    {src: 'res/images/cocktail4.png'}
+    {src: 'res/images/cocktail4.png'},
+    {src: 'res/images/vodga.png'}
 
  
     //plist
