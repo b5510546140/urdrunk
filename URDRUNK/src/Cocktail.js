@@ -5,23 +5,18 @@ var Cocktail = cc.Sprite.extend({
 		this.y = y;
         this.numberOfCharacter = this.randomPicture();
 		var name = 'res/images/cocktail'+this.randomPicture()+'.png';
-		// var name = 'res/images/cocktail'+3+'.png';
         this.character = 'res/images/char'+this.numberOfCharacter+'.png';
         this.charPic = cc.Sprite.create(this.character);
         this.charPic.setAnchorPoint( new cc.Point( 0.5, 0 ) );
         this.charPic.setPosition( new cc.Point( 0, 20 ) );
         this.addChild( this.charPic , 1 );
-		console.log(name);
 		this.cocktail = cc.Sprite.create( name );//just try to see the picture
         this.addChild(this.cocktail);
         this.left = true;
         this.accFallDown = 0;
-        // to do add the letter on the top of the cocktail glass
 	},
 
 	update: function(dt){
-		// this.x = this.getPositionX();
-  //   	this.y = this.getPositionY();
     	if(this.y > Cocktail.POSITION.TABLE){
             this.fallDown();
     	}
@@ -95,8 +90,6 @@ var Cocktail = cc.Sprite.extend({
         this.cocktail = cc.Sprite.create( name );
         this.addChild(this.cocktail);
     }
-
-
 });
 Cocktail.POSITION ={
     TABLE :370,

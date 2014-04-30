@@ -3,11 +3,11 @@ var Vodga = cc.Sprite.extend({
     	this._super();
         this.x = x;
         this.y = y;
-        this.left = true;//some beer left on glass
+        this.left = true;
         this.half = false;
         this.accFallDown = 0;
 
-        this.beer = cc.Sprite.create( 'res/images/vodga.png' );//glass of beer
+        this.beer = cc.Sprite.create( 'res/images/vodga.png' );
         this.addChild(this.beer);
 
     },

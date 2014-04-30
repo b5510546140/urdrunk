@@ -3,11 +3,11 @@ var Beer = cc.Sprite.extend({
     	this._super();
         this.x = x;
         this.y = y;
-        this.left = true;//some beer left on glass
+        this.left = true;
         this.half = false;
         this.accFallDown = 0;
 
-        this.beer = cc.Sprite.create( 'res/images/beerfull.png' );//glass of beer
+        this.beer = cc.Sprite.create( 'res/images/beerfull.png' );
         this.addChild(this.beer);
 
     },
@@ -42,7 +42,7 @@ var Beer = cc.Sprite.extend({
     },
 
     fallDown: function(){
-       this.y -= (5 + this.accFallDown);
+        this.y -= (5 + this.accFallDown);
         this.setPositionY( this.y);
         this.accFallDown += 0.3;
     },
