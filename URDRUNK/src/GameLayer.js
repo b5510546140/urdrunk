@@ -20,15 +20,15 @@ var GameLayer = cc.LayerColor.extend({
         this.healthbar.startround();
         this.healthbar.scheduleUpdate();
 
-        this.beer = new Beer(300,700);
+        this.beer = new Beer(300,700,this.sound);
         this.beer.setPosition(cc.p(300,700));
         this.addChild(this.beer);
 
-        this.cocktail = new Cocktail(300,700);
+        this.cocktail = new Cocktail(300,700,this.sound);
         this.cocktail.setPosition(cc.p(300,700));
         this.addChild(this.cocktail);
 
-        this.vodga = new Vodga(300,700);
+        this.vodga = new Vodga(300,700,this.sound);
         this.vodga.setPosition(cc.p(300,700));
         this.addChild(this.vodga);
 
@@ -44,7 +44,7 @@ var GameLayer = cc.LayerColor.extend({
         this.timeDelay = 0;
         this.scheduleUpdate();
 
-        this.time = 15;
+        this.time = 150;
         this.allLabel.timeLabel.setString( this.time );
         this.allLabel.timeLabelAdd.setString( '' );
         this.clock();
@@ -222,7 +222,7 @@ var GameLayer = cc.LayerColor.extend({
             this.unScheduleUpdate();
             this.time = 0;
             this.setKeyboardEnabled( false );
-            cc.AudioEngine.getInstance().stopAllEffects();
+            this.sound.stopAllEffects();
         }
     }
 });

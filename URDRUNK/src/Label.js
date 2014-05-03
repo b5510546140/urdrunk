@@ -27,7 +27,7 @@ var Label = cc.Node.extend({
     this.addChild(this.background);
 
     this.howToClcik = cc.Sprite.create("res/images/howto.png");
-    this.howToClcik.setPosition( new cc.Point( 40, 320 ));
+    this.howToClcik.setPosition( new cc.Point( 40, 335 ));
     this.howToClcik.setAnchorPoint(new cc.Point(0,0));
     this.addChild(this.howToClcik,1);
 }

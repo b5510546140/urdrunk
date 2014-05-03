@@ -21,18 +21,23 @@ var Resources = [
     {src: 'res/effects/pipe.wav'},
 
     {src: 'res/effects/beer-poured.mp3'},
+    {src: 'res/effects/beerdrop.mp3'},
     {src: 'res/effects/beeropen.mp3'},
+    {src: 'res/effects/drinkbeer.mp3'},
     {src: 'res/effects/slide-across-worktop.mp3'},
 
     {src: 'res/effects/burp.mp3'},
 
     {src: 'res/effects/die.wav'},
-    {src: 'res/effects/wine-glass-put-down.mp3'},
     {src: 'res/effects/timer.wav'},
 
-    {src: 'res/effects/glassbreak1.wav'},
-    {src: 'res/effects/glassbreak2.wav'},
-    {src: 'res/effects/glassbreak3.wav'},
+    {src: 'res/effects/wine-glass-put-down.mp3'},
+    {src: 'res/effects/slurpWater.mp3'},
+    {src: 'res/effects/shake.mp3'},
+
+    {src: 'res/effects/glassbreak-1.mp3'},
+    {src: 'res/effects/glassbreak-2.mp3'},
+    {src: 'res/effects/glassbreak-3.mp3'},
 
     //fnt
  

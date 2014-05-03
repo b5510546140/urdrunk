@@ -5,6 +5,7 @@ var Sound = cc.Node.extend({
         this.bachground.playMusic( 'res/effects/bgsound.mp3', true );
         this.bachground.setMusicVolume(0.2);
 
+
         this.music = cc.AudioEngine.getInstance();
         // cc.AudioEngine.getInstance().playMusic( 'res/effects/bgsound.mp3', true );
         // cc.AudioEngine.getInstance().playEffect( 'res/effects/intro-to-game.wav' );
@@ -18,6 +19,14 @@ var Sound = cc.Node.extend({
 
 	  beerSlide: function(){
 	  	this.music.playEffect('res/effects/slide-across-worktop.mp3');
+	  },
+
+	  beerDown: function(){
+	  	this.music.playEffect('res/effects/beerdrop.mp3');
+	  },
+
+	  beerDrink: function(){
+	  	this.music.playEffect('res/effects/drinkbeer.mp3');
 	  },
 
 	  introBurp: function(){
@@ -38,12 +47,20 @@ var Sound = cc.Node.extend({
 	  	this.music.playEffect('res/effects/wine-glass-put-down.mp3');
 	  },
 
+	  cocktailOpen: function(){
+	  	this.music.playEffect('res/effects/shake.mp3');
+	  },
+
+	  cocktailSlurp: function(){
+	  	this.music.playEffect('res/effects/slurpWater.mp3');
+	  },
+
 	  die: function(){
 	  	this.music.playEffect('res/effects/die.wav');
 	  },
 
 	  glassBreak: function(){
 	  	var random = Math.floor(Math.random()*3+1);
-	  	this.music.playEffect('res/effects/glassbreak'+random+'.wav');
+	  	this.music.playEffect('res/effects/glassbreak-'+random+'.mp3');
 	  },
 });

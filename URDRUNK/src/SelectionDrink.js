@@ -1,8 +1,9 @@
 var SelectionDrink = cc.Node.extend({
 	 ctor: function() {
-	 	this.array = [['b','b','c','c','b','c','b','c','b','c','b','c'],
+	 	this.array = [['b','b','c','c','b','v','b','c','b','c','b','c'],
 	 	['c','b','c','v','c','c','b','c','b','c','b','c'],
 	 	['c','c','c','v','b','c','v','b','b','c','c','b']];
+	 	// this.array = [['v','b','v']];
 	 	this.randomSet = null;
 	 	this.random();
 	 },
@@ -15,6 +16,7 @@ var SelectionDrink = cc.Node.extend({
 	 },
 
 	 random :function(){
-	 	this.randomSet = Math.floor(Math.random()*3);
+	 	// this.randomSet = Math.floor(Math.random()*3);
+	 	this.randomSet = 0;
 	 }
 });

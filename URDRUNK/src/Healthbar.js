@@ -56,6 +56,6 @@ HealthBar.STATE ={
 	STOP :1
 } ;
 HealthBar.CONSTANT = {
-	DECREASE : 0.0015, //0.06 per sec
+	DECREASE : 0.0011, //0.06 per sec
 	INCREASE : 0.04
 };

@@ -1,5 +1,5 @@
 var Cocktail = cc.Sprite.extend({
-	ctor: function(x,y) {
+	ctor: function(x,y,sound) {
 		this._super();
 		this.x = x;
 		this.y = y;
@@ -14,17 +14,35 @@ var Cocktail = cc.Sprite.extend({
         this.addChild(this.cocktail);
         this.left = true;
         this.accFallDown = 0;
+        this.sound = sound;
+
+        this.isDownSound = true;
+        this.isDrinkSound = true;
+        this.isOpenSound = true;
+
 	},
 
 	update: function(dt){
+         if(this.isOpenSound){
+            this.sound.cocktailOpen();
+            this.isOpenSound = false;
+        }
     	if(this.y > Cocktail.POSITION.TABLE){
             this.fallDown();
     	}
         else{
+            if(this.isDownSound){
+                this.sound.cocktailDown();
+                this.isDownSound = false;
+            }
            this.setPositionOnTable();
         }
 
         if(this.x < 550 && this.y == 370){
+            if(this.isDrinkSound){
+                this.sound.cocktailSlurp();
+                this.isDrinkSound = false;
+            }
             this.goRight();
     	}
         
@@ -45,7 +63,7 @@ var Cocktail = cc.Sprite.extend({
     },
 
     goRight: function(){
-        this.x += 5;
+        this.x += 3;
         this.setPositionX( this.x );
     },
 
@@ -65,6 +83,7 @@ var Cocktail = cc.Sprite.extend({
    isInScreen: function(){
         if(!this.left){
             if(this.x > 800){
+                this.sound.glassBreak();
                 this.x = 300;
                 this.y = 700;
                 this.setPosition(cc.p(300,700));
