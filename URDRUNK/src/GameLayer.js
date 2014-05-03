@@ -8,6 +8,8 @@ var GameLayer = cc.LayerColor.extend({
         this.scoreLv = 1;
         this.timeLv = 10;
 
+        this.sound = new Sound();
+
         this.allLabel = new Label();
         this.allLabel.setPosition(cc.p(0,0));
         this.addChild( this.allLabel,0 );
@@ -42,10 +44,11 @@ var GameLayer = cc.LayerColor.extend({
         this.timeDelay = 0;
         this.scheduleUpdate();
 
-        this.time = 100;
+        this.time = 15;
         this.allLabel.timeLabel.setString( this.time );
         this.allLabel.timeLabelAdd.setString( '' );
         this.clock();
+       
         return true;
     },
 
@@ -57,6 +60,9 @@ var GameLayer = cc.LayerColor.extend({
                 this.allLabel.timeLabelAdd.setString( '' );
             }
             ++this.timeDelay;
+            if(this.time < 10){
+               this.sound.timer();
+            }
         },1);
     },
 
@@ -78,13 +84,12 @@ var GameLayer = cc.LayerColor.extend({
             this.count = 0;
             this.maxPressTime = this.randomPress();
         }
-
+        
         if(this.healthbar.healthPercent == 0){
             this.gameOver();
         }else if(this.time == 0){
             this.gameOver();
         }
-
     },
 
     randomPress: function(){
@@ -217,6 +222,7 @@ var GameLayer = cc.LayerColor.extend({
             this.unScheduleUpdate();
             this.time = 0;
             this.setKeyboardEnabled( false );
+            cc.AudioEngine.getInstance().stopAllEffects();
         }
     }
 });

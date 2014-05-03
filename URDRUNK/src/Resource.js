@@ -15,16 +15,33 @@ var Resources = [
     {src: 'res/images/cocktail2.png'},
     {src: 'res/images/cocktail3.png'},
     {src: 'res/images/cocktail4.png'},
-    {src: 'res/images/vodga.png'}
+    {src: 'res/images/vodga.png'},
 
- 
-    //plist
- 
+    //effect
+    {src: 'res/effects/pipe.wav'},
+
+    {src: 'res/effects/beer-poured.mp3'},
+    {src: 'res/effects/beeropen.mp3'},
+    {src: 'res/effects/slide-across-worktop.mp3'},
+
+    {src: 'res/effects/burp.mp3'},
+
+    {src: 'res/effects/die.wav'},
+    {src: 'res/effects/wine-glass-put-down.mp3'},
+    {src: 'res/effects/timer.wav'},
+
+    {src: 'res/effects/glassbreak1.wav'},
+    {src: 'res/effects/glassbreak2.wav'},
+    {src: 'res/effects/glassbreak3.wav'},
+
     //fnt
  
     //tmx
  
-    //bgm
+    //bg sound
+    {src: 'res/effects/bgsound.mp3'},
+    {src: 'res/effects/intro-burp.mp3'},
+
  
     //effect
 ];

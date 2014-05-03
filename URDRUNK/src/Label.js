@@ -6,6 +6,11 @@ var Label = cc.Node.extend({
     this.scoreLabel.setColor(new cc.Color3B(255,255,255)); 
     this.addChild( this.scoreLabel,1 );
 
+    this.clock = cc.Sprite.create("res/images/clock.png");
+    this.clock.setPosition( new cc.Point( 33, 535 ));
+    this.clock.setAnchorPoint(new cc.Point(0,0));
+    this.addChild(this.clock,1);
+
     this.timeLabel = cc.LabelTTF.create( '0', 'Arial', 32 );
     this.timeLabel.setPosition( cc.p( 120, 560 ) );
     this.timeLabel.setColor(new cc.Color3B(255,255,255)); 
@@ -22,7 +27,7 @@ var Label = cc.Node.extend({
     this.addChild(this.background);
 
     this.howToClcik = cc.Sprite.create("res/images/howto.png");
-    this.howToClcik.setPosition( new cc.Point( 40, 360 ));
+    this.howToClcik.setPosition( new cc.Point( 40, 320 ));
     this.howToClcik.setAnchorPoint(new cc.Point(0,0));
     this.addChild(this.howToClcik,1);
 }

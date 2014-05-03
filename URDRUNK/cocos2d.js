@@ -13,7 +13,8 @@
         SingleEngineFile:'lib/Cocos2d-html5-v2.2.2.min.js',
         appFiles:[
             'src/GameLayer.js','src/Healthbar.js','src/Resource.js','src/Beer.js',
-            'src/Cocktail.js','src/SelectionDrink.js','src/CheckClickKeyboard.js','src/Vodga.js','src/Label.js'     //add your own files in order here
+            'src/Cocktail.js','src/SelectionDrink.js',
+            'src/Sound.js','src/Vodga.js','src/Label.js'     //add your own files in order here
         ]
     };
 
