@@ -13,6 +13,7 @@ var Beer = cc.Sprite.extend({
         this.isDownSound = true;
         this.isRightSound = true;
         this.isOpenSound = true;
+        this.isEmpty = true;
 
     },
 
@@ -31,7 +32,7 @@ var Beer = cc.Sprite.extend({
             }
             this.setPositionOnTable();
         }
-        if(this.x < 550 && this.y <= 380){
+        if(this.x < 570 && this.y <= 380){
             this.goRight();
             if(this.isRightSound){
                 this.sound.beerSlide();    
@@ -43,13 +44,16 @@ var Beer = cc.Sprite.extend({
             this.beer = this.beer = cc.Sprite.create( 'res/images/beerhalf.png' );
             this.addChild(this.beer);
             this.half = false;
-            this.sound.beerDrink(); 
         }
         if(!this.left){
             this.removeChild(this.beer);
             this.beer = this.beer = cc.Sprite.create( 'res/images/beer0.png' );
             this.addChild(this.beer);
-            this.notHaveDrinkLeft();  
+            this.notHaveDrinkLeft(); 
+            if(this.isEmpty){
+                this.sound.beerDrink(); 
+                this.isEmpty = false;
+            } 
         }
     },
 
@@ -91,6 +95,8 @@ var Beer = cc.Sprite.extend({
                 this.isDownSound = true;
                 this.isRightSound = true;
                 this.isOpenSound = true;
+                this.isEmpty = true;
+
                 return false;
             }
         }

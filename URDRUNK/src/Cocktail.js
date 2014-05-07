@@ -38,7 +38,7 @@ var Cocktail = cc.Sprite.extend({
            this.setPositionOnTable();
         }
 
-        if(this.x < 550 && this.y == 370){
+        if(this.x < 570 && this.y == 370){
             if(this.isDrinkSound){
                 this.sound.cocktailSlurp();
                 this.isDrinkSound = false;

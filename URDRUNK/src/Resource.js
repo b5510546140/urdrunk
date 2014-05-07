@@ -45,6 +45,8 @@ var Resources = [
  
     //bg sound
     {src: 'res/effects/bgsound.mp3'},
+    {src: 'res/effects/bgsong1.mp3'},
+    {src: 'res/effects/bgsong2.mp3'},
     {src: 'res/effects/intro-burp.mp3'},
 
  

@@ -25,7 +25,7 @@ var Vodga = cc.Sprite.extend({
         else{
             this.setPositionOnTable();
         }
-        if(this.x < 550 && this.y <= 380){
+        if(this.x < 570 && this.y <= 380){
             console.log('right');
             this.goRight();
     	}

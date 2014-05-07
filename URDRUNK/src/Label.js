@@ -30,5 +30,5 @@ var Label = cc.Node.extend({
     this.howToClcik.setPosition( new cc.Point( 40, 335 ));
     this.howToClcik.setAnchorPoint(new cc.Point(0,0));
     this.addChild(this.howToClcik,1);
-}
+    }
 });
